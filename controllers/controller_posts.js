@@ -15,7 +15,7 @@ function show(req, res) {
     // interpreta la stinga come numero decimale
     const postId = parseInt(req.params.id, 10);
     // ricerca dell'ID specificato
-    const post = post.find(post => post.id === postID);
+    const post = posts.find(post => post.id === postID);
 
     // se il post non venisse trovato restituisco error 404
     if (!post) {
@@ -46,7 +46,27 @@ function update(req, res) {
 // destroy/delete => funzione
 function destroy(req, res) {
 
-    res.send('Cancella post ' + req.params.id);
+    // Estraggo l'ID del post dalla richiesta (params) e lo converte in un intero
+    const postId = parseInt(req.params.id, 10);
+
+    // Trovo l'indice del post da eliminare nell'array dei post
+    const postIndex = post.findIndex(post => post.id === postId);
+
+    // Se il post non venisse trovato restituisce error 404
+    if (postIndex === -1) {
+
+        return res.status(404).json({ error: 'Post non trovato' });
+
+    }
+
+    // Rimuovo il post dall'array dei post usando splice
+    posts.splice(postIndex, 1);
+
+    // Stampo la lista aggiornata dei post nel terminale per visualizzare la modifica
+    console.log('Lista dei post aggiornata:', posts);
+
+    // Rispondo con stato 204 (No Content) per indicare che l'eliminazione è stata completata senza errori
+    res.status(204).send();
 
 }
 
