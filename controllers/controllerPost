@@ -65,12 +65,17 @@ function destroy(req, res) {
     const id = parseInt(req.params.id, 10);
 
     // Trovo l'indice del post da eliminare nell'array dei post
-    const post = post.find(post => post.id === id);
+    const post = posts.find(post => post.id === id);
 
     // Se il post non venisse trovato restituisce error 404
     if (!post) {
 
-        return res.status(404).json({ error: 'Post non trovato' });
+        return res.json({ 
+            
+            error: "Post non trovato",
+            message: "Dolce non trovato"
+            
+        });
 
     }
 
