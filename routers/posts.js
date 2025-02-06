@@ -3,6 +3,9 @@ const express = require('express');
 // creo un router
 const router = express.Router();
 
+// importo le funzioni del controller
+const controllerPost = require('../controllers/controllerPost');
+
 // importo array di posts contenuto in data
 const posts = require('../data/posts');
 

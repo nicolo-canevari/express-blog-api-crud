@@ -4,8 +4,22 @@ const posts = require('../data/posts');
 // index => funzione
 function index(req, res) {
 
-    // Restituisce la lista completa dei post in formato JSON
-    res.send(posts);
+    // il post filtrato === a quelo originale
+    let filteredPosts = posts;
+
+    // filtriamo il post
+    if (req.querytag) {
+
+        filteredPosts = posts.filter(
+
+            post => post.tags.includes(req.query.tag)
+
+        );
+
+    }
+
+    // restituisco l'array in formato json
+    res.json(filteredPosts);
 
 }
 
@@ -14,8 +28,9 @@ function show(req, res) {
 
     // interpreta la stinga come numero decimale
     const postId = parseInt(req.params.id, 10);
+
     // ricerca dell'ID specificato
-    const post = posts.find(post => post.id === postID);
+    const post = posts.find(post => post.id === id);
 
     // se il post non venisse trovato restituisco error 404
     if (!post) {
