@@ -4,49 +4,24 @@ const express = require('express');
 const router = express.Router();
 
 // importo le funzioni del controller
-const controllerPost = require('../controllers/controllerPost');
+const postController = require('../controllers/controllerPost');
 
-// importo array di posts contenuto in data
-const posts = require('../data/posts');
 
-// rotta per ottenere la lista dei post
-router.get('/', (req, res) => {
-
-  // restituzione dell'array di oggetti in formato json
-  res.json(posts);
-
-});
+// index => visualizza tutti gli elementi
+router.get('/', postController.index); 
 
 // show => visualizzare un elemento tramite id
-router.get('/:id', function (req, res) {
-
-  // restituisce il singolo elemento in formato json
-  res.json(posts[req.params.id]);
-
-})
+router.get('/:id', postController.show);
 
 // store => creare un elemento
-router.post('/', function (req, res) {
-
-  res.send('Creazione nuovo post ');
-  console.log('Creazione nuovo post ');
-
-});
+router.post('/', postController.store);
 
 // update => per modificare l'elemento
 // put prende tutto l'elemento
-router.put('/:id', function (req, res) {
-
-  res.send('Lista dei post ' + req.params.id);
-
-});
+router.put('/:id', postController.update);
 
 // delete => per cancellare un elemento
-router.delete('/:id', function(req, res) {
-
-  res.send('Cancella post post' + req.params.id);
-
-});
+router.delete('/:id', postController.destroy);
 
 
 // esportazione del router
