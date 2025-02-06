@@ -7,9 +7,10 @@ function index(req, res) {
     // il post filtrato === a quelo originale
     let filteredPosts = posts;
 
-    // filtriamo il post
+    // Verifico se è stato passato un parametro "tag" nella query
     if (req.querytag) {
 
+        // filtro i post che contengono il tag passato
         filteredPosts = posts.filter(
 
             post => post.tags.includes(req.query.tag)
