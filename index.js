@@ -32,7 +32,7 @@ app.listen(port, () => {
 
     // stampo sul terminale
     console.log(`Server in ascolto sulla porta ${port}`)
-    
+
 });
 
 

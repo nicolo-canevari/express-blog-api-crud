@@ -1,10 +1,11 @@
 // importo il file data_posts
 const posts = require('../data/posts');
 
+
 // index => funzione
 function index(req, res) {
 
-    // il post filtrato === a quelo originale
+    // il post filtrato === a quello originale
     let filteredPosts = posts;
 
     // Verifico se è stato passato un parametro "tag" nella query
@@ -23,6 +24,7 @@ function index(req, res) {
     res.json(filteredPosts);
 
 }
+
 
 // show => funzione
 function show(req, res) {
@@ -44,6 +46,7 @@ function show(req, res) {
     res.json(post);
 
 }
+
 
 // store => fuzione
 function store(req, res) {
@@ -84,6 +87,7 @@ function store(req, res) {
 
 }
 
+
 // update => funzione
 function update(req, res) {
 
@@ -97,19 +101,29 @@ function update(req, res) {
     if (!post) {
 
         return res.status(404).json({
+
             error: 'Post non trovato'
 
         });
 
     }
-    
+
     // res.send('Lista dei post ' + req.params.id);
 
-
     // Modifico il post con i nuovi dati
-    post.title 
+    post.title = req.body.title;
+    post.slug = req.body.slug;
+    post.content = req.body.content;
+    post.tags = req.body.tags;
+
+    // stampo l'array dei post aggiornato
+    console.log('Lista dei post aggiornata:', posts);
+
+    // Restituisco il post aggiornato al client
+    res.json(post);
 
 }
+
 
 // destroy/delete => funzione
 function destroy(req, res) {
@@ -136,12 +150,13 @@ function destroy(req, res) {
     posts.splice(posts.indexOf(post), 1);
 
     // Stampo la lista aggiornata dei post nel terminale per visualizzare la modifica
-    console.log(posts);
+    console.log('Lista dei post aggiornata:', posts);
 
     // Rispondo con stato 204 (No Content) per indicare che l'eliminazione è stata completata senza errori
     res.sendStatus(204);
 
 }
+
 
 // esporto tutto
 module.exports = { index, show, store, update, destroy };

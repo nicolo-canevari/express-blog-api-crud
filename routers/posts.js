@@ -5,8 +5,9 @@ const router = express.Router();
 // importo le funzioni del controller
 const postController = require('../controllers/controllerPost');
 
+
 // index => visualizza tutti gli elementi
-router.get('/', postController.index); 
+router.get('/', postController.index);
 
 // show => visualizzare un elemento tramite id
 router.get('/:id', postController.show);
