@@ -87,7 +87,27 @@ function store(req, res) {
 // update => funzione
 function update(req, res) {
 
-    res.send('Lista dei post ' + req.params.id);
+    // Ottengo l'ID del post che voglio aggiornare
+    const id = parseInt(req.params.id, 10);
+
+    // Trovo il post con l'ID corrispondente
+    const post = posts.find(post => post.id === id);
+
+    // se il post non esiste, restituisco errore 404
+    if (!post) {
+
+        return res.status(404).json({
+            error: 'Post non trovato'
+
+        });
+
+    }
+    
+    // res.send('Lista dei post ' + req.params.id);
+
+
+    // Modifico il post con i nuovi dati
+    post.title 
 
 }
 
