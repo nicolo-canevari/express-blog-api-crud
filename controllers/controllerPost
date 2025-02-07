@@ -48,8 +48,20 @@ function show(req, res) {
 // store => fuzione
 function store(req, res) {
 
-    console.log("Nuovo post ricevuto:", req.body);
-    res.send('Creazione nuovo post ');
+    // ottengo il corpo della richiesta
+    const { title, content, image, tags } = req.body;
+
+    // Creazione nuovo post con ID unico (ID nuovo sarà ultimo ID + 1)
+    const newPost = {
+
+        // genera un ID incrementale
+        id:post.lenght + 1,
+
+    }
+
+
+    // console.log("Nuovo post ricevuto:", req.body);
+    // res.send('Creazione nuovo post ');
 
 }
 
