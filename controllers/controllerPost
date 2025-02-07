@@ -48,17 +48,36 @@ function show(req, res) {
 // store => fuzione
 function store(req, res) {
 
-    // ottengo il corpo della richiesta
-    const { title, content, image, tags } = req.body;
+    // controllo l'array prima dell'aggiunta
+    console.log("Array prima dell'aggiunta", posts);
 
-    // Creazione nuovo post con ID unico (ID nuovo sarà ultimo ID + 1)
+    // Creo un nuovo id incrementando l'ultimo nell'array
+    const lastPost = posts[posts.length - 1];
+    const idLastPost = lastPost.id;
+    const newId = idLastPost + 1;
+
+    // Creazione nuovo oggetto (ID nuovo sarà ultimo ID + 1)
     const newPost = {
 
         // genera un ID incrementale
-        id:post.lenght + 1,
+        id: newId,
+        title: req.body.title,
+        slug: req.body.slug,
+        content: req.body.content,
+        // image: req.body.image,
+        tags: req.body.tags,
 
-    }
+    };
 
+    // Aggiungo il nuovo post all'array dei post
+    posts.push(newPost);
+
+    // Stampo l'array dei post aggiornato nel terminale
+    console.log("Nuovo post aggiunto:", newPost);
+    console.log("Lista post aggiornata:", posts);
+
+    // Risposta al client (status 201 per indicare creazione riuscita)
+    res.status(201).json(newPost);
 
     // console.log("Nuovo post ricevuto:", req.body);
     // res.send('Creazione nuovo post ');
@@ -84,11 +103,11 @@ function destroy(req, res) {
     // Se il post non venisse trovato restituisce error 404
     if (!post) {
 
-        return res.json({ 
-            
+        return res.json({
+
             error: "Post non trovato",
             message: "Piatto non trovato"
-            
+
         });
 
     }

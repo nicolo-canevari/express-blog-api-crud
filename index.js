@@ -4,6 +4,9 @@ const express = require('express');
 // creo l'applicazione Express per configurare il server e le rotte
 const app = express();
 
+// middleware per gestire le richieste JSON
+app.use(express.json());
+
 // porta su cui il server ascolterà le richieste HTTP
 const port = 3000;
 
