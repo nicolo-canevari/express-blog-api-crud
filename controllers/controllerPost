@@ -74,7 +74,7 @@ function destroy(req, res) {
         return res.json({ 
             
             error: "Post non trovato",
-            message: "Dolce non trovato"
+            message: "Piatto non trovato"
             
         });
 
