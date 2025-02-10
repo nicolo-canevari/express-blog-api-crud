@@ -9,7 +9,7 @@ function index(req, res) {
     let filteredPosts = posts;
 
     // Verifico se è stato passato un parametro "tag" nella query
-    if (req.querytag) {
+    if (req.query.tag) {
 
         // filtro i post che contengono il tag passato
         filteredPosts = posts.filter(
@@ -148,6 +148,9 @@ function destroy(req, res) {
 
     // Rimuovo il post dall'array dei post usando splice
     posts.splice(posts.indexOf(post), 1);
+
+    // Rispondo con stato 204 (No Content)
+    res.sendStatus(204);
 
     // Stampo la lista aggiornata dei post nel terminale per visualizzare la modifica
     console.log('Lista dei post aggiornata:', posts);
