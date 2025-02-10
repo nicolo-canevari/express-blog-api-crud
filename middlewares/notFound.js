@@ -4,10 +4,10 @@ function notFound(req, res, next) {
     res.status(404).json({
 
         error: "Not Found",
-        message: "La rotta ${req.originalUrl} non esiste"
+        message: `La rotta ${req.originalUrl} non esiste`
 
     });
 
 }
 
-module.export = notFound;
+module.exports = notFound;
