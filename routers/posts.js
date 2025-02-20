@@ -1,7 +1,9 @@
 // importo express
 const express = require('express');
+
 // creo un router
 const router = express.Router();
+
 // importo le funzioni del controller
 const postController = require('../controllers/controllerPost');
 

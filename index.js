@@ -4,6 +4,9 @@ const express = require('express');
 // creo l'applicazione Express per configurare il server e le rotte
 const app = express();
 
+// importo il CORS
+const cors = require("cors");
+
 // importo i middleware
 const notFound = require('./middlewares/notFound');
 const errorHandler = require('./middlewares/errorHandler');
@@ -16,6 +19,14 @@ const port = 3000;
 
 // middleware per gestire le richieste JSON
 app.use(express.json());
+
+// middleware CORS
+app.use(cors({
+
+    origin: 'http://localhost:5173'
+
+}));
+
 
 // gestione dei file statici della cartella 'public'
 app.use(express.static('public'));

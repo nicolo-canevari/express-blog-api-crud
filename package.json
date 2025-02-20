@@ -13,13 +13,14 @@
     "url": "git+https://github.com/nicolo-canevari/express-blog-intro.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nick",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nicolo-canevari/express-blog-intro/issues"
   },
   "homepage": "https://github.com/nicolo-canevari/express-blog-intro#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2"
   },
   "devDependencies": {

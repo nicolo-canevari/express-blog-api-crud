@@ -1,7 +1,6 @@
 // importo il file data_posts
 const posts = require('../data/posts');
 
-
 // index => funzione
 function index(req, res) {
 
