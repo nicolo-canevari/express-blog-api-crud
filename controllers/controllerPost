@@ -47,7 +47,7 @@ function show(req, res) {
 }
 
 
-// store => fuzione
+// STORE => fuzione
 function store(req, res) {
 
     // controllo l'array prima dell'aggiunta
@@ -66,7 +66,7 @@ function store(req, res) {
         title: req.body.title,
         slug: req.body.slug,
         content: req.body.content,
-        // image: req.body.image,
+        image: req.body.image,
         tags: req.body.tags,
 
     };
@@ -81,8 +81,7 @@ function store(req, res) {
     // Risposta al client (status 201 per indicare creazione riuscita)
     res.status(201).json(newPost);
 
-    // console.log("Nuovo post ricevuto:", req.body);
-    // res.send('Creazione nuovo post ');
+    res.json(newPost);
 
 }
 

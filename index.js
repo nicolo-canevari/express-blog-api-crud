@@ -1,40 +1,40 @@
 // importo il pacchetto express
 const express = require('express');
 
-// creo l'applicazione Express per configurare il server e le rotte
-const app = express();
-
 // importo il CORS
 const cors = require("cors");
 
-// importo i middleware
-const notFound = require('./middlewares/notFound');
-const errorHandler = require('./middlewares/errorHandler');
-
-// importo il router dei post
-const postRouter = require('./routers/posts');
+// creo l'applicazione Express per configurare il server e le rotte
+const app = express();
 
 // porta su cui il server ascolterà le richieste HTTP
 const port = 3000;
 
-// middleware per gestire le richieste JSON
-app.use(express.json());
 
-// middleware CORS
+// middleware CORS a tutte le richieste
 app.use(cors({
 
     origin: 'http://localhost:5173'
 
 }));
 
+// importo il router dei post
+const postRouter = require('./routers/posts');
+
+// importo i middleware
+const notFound = require('./middlewares/notFound');
+const errorHandler = require('./middlewares/errorHandler');
 
 // gestione dei file statici della cartella 'public'
 app.use(express.static('public'));
 
+
+// middleware per gestire le richieste JSON
+app.use(express.json());
+
 // definisco la rotta principale
 app.get('/', (req, res) => {
 
-    // http://localhost:3000
     res.send('Server del mio blog')
 
 });
