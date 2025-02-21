@@ -51,7 +51,7 @@ function show(req, res) {
 function store(req, res) {
 
     // controllo l'array prima dell'aggiunta
-    console.log("Array prima dell'aggiunta", posts);
+    // console.log("Array prima dell'aggiunta", posts);
 
     // Creo un nuovo id incrementando l'ultimo nell'array
     const lastPost = posts[posts.length - 1];
@@ -75,18 +75,16 @@ function store(req, res) {
     posts.push(newPost);
 
     // Stampo l'array dei post aggiornato nel terminale
-    console.log("Nuovo post aggiunto:", newPost);
-    console.log("Lista post aggiornata:", posts);
+    console.log(posts);
 
-    // Risposta al client (status 201 per indicare creazione riuscita)
-    res.status(201).json(newPost);
-
+    // restituisco lo status corretto e il post appena creato
+    res.status(201);
     res.json(newPost);
 
 }
 
 
-// update => funzione
+// UPDATE => funzione
 function update(req, res) {
 
     // Ottengo l'ID del post che voglio aggiornare
@@ -123,7 +121,7 @@ function update(req, res) {
 }
 
 
-// destroy/delete => funzione
+// DELETE => funzione
 function destroy(req, res) {
 
     // Estraggo l'ID del post dalla richiesta (params) e lo converte in un intero
