@@ -1,5 +1,5 @@
 // importo il file data_posts
-const posts = require('../data/posts');
+import posts from '../data/posts.js';
 
 // index => funzione
 function index(req, res) {
@@ -54,7 +54,7 @@ function store(req, res) {
     // console.log("Array prima dell'aggiunta", posts);
 
     // Controllo che tutti i campi richiesti siano presenti
-    if (!req.body.title || !req.body.content) {
+    if (!req.body.title || !req.body.content || !req.body.tags) {
 
         return res.status(400).json({ error: 'Dati mancanti' });
 
@@ -73,7 +73,6 @@ function store(req, res) {
         title: req.body.title,
         slug: req.body.slug,
         content: req.body.content,
-        image: req.body.image,
         tags: req.body.tags,
 
     };
