@@ -53,10 +53,17 @@ function store(req, res) {
     // controllo l'array prima dell'aggiunta
     // console.log("Array prima dell'aggiunta", posts);
 
+    // Controllo che tutti i campi richiesti siano presenti
+    if (!req.body.title || !req.body.content) {
+
+        return res.status(400).json({ error: 'Dati mancanti' });
+
+    }
+
+
     // Creo un nuovo id incrementando l'ultimo nell'array
     const lastPost = posts[posts.length - 1];
-    const idLastPost = lastPost.id;
-    const newId = idLastPost + 1;
+    const newId = lastPost ? lastPost.id + 1 : 1;
 
     // Creazione nuovo oggetto (ID nuovo sarà ultimo ID + 1)
     const newPost = {
@@ -128,22 +135,17 @@ function destroy(req, res) {
     const id = parseInt(req.params.id, 10);
 
     // Trovo l'indice del post da eliminare nell'array dei post
-    const post = posts.find(post => post.id === id);
+    const postIndex = posts.findIndex(post => post.id === id);
 
     // Se il post non venisse trovato restituisce error 404
-    if (!post) {
+    if (postIndex === -1) {
 
-        return res.json({
-
-            error: "Post non trovato",
-            message: "Piatto non trovato"
-
-        });
+        return res.status(404).json({ error: "Post non trovato" });
 
     }
 
     // Rimuovo il post dall'array dei post usando splice
-    posts.splice(posts.indexOf(post), 1);
+    posts.splice(postIndex, 1);
 
     // Rispondo con stato 204 (No Content)
     res.sendStatus(204);
@@ -154,8 +156,11 @@ function destroy(req, res) {
     // Rispondo con stato 204 (No Content) per indicare che l'eliminazione è stata completata senza errori
     res.sendStatus(204);
 
+    // Stampo la lista aggiornata dei post nel terminale
+    console.log('Lista dei post aggiornata:', posts);
+
 }
 
 
 // esporto tutto
-module.exports = { index, show, store, update, destroy };
+export { index, show, store, update, destroy };
